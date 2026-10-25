@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Campus Connect — Final Review</title>
+<style>
+:root{--bg:#f5f8fd;--card:#fff;--text:#10213f;--muted:#6b7a90;--blue:#2563eb;--blue2:#1d4ed8;--soft:#eaf2ff;--border:#e3eaf4;--green:#16a34a;--purple:#7c3aed;--orange:#f59e0b;--shadow:0 10px 30px rgba(30,60,100,.07)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}button{cursor:pointer;border:0}.hidden{display:none!important}.muted{color:var(--muted)}
+.app-shell{min-height:100vh}.topbar{height:76px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:24px;position:sticky;top:0;z-index:20}.brand{display:flex;align-items:center;gap:12px;min-width:245px}.brand-mark{width:44px;height:44px;border-radius:13px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;display:grid;place-items:center;font-size:22px;box-shadow:0 8px 18px #2563eb2b}.brand-name{font-size:20px;font-weight:900;line-height:1}.brand-sub{font-size:11px;color:var(--muted);font-weight:700;margin-top:4px}.top-search{flex:1;max-width:560px;margin:auto;position:relative}.top-search input{width:100%;height:44px;border:1px solid transparent;background:#f0f5fc;border-radius:14px;padding:0 18px 0 45px;outline:0}.top-search input:focus{border-color:#b9d0ff;background:#fff}.search-icon{position:absolute;left:16px;top:11px;color:#667b99}.top-actions{display:flex;align-items:center;gap:12px}.icon-btn{width:42px;height:42px;border-radius:12px;background:#f4f7fb;color:#2e4567;display:grid;place-items:center;font-size:18px}.profile-mini{display:flex;align-items:center;gap:9px;padding:5px 8px;border-radius:12px;background:#f7f9fc}.avatar{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;font-weight:900}.profile-mini span{font-weight:800;font-size:14px;max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.profile-mini b{display:flex;align-items:center;justify-content:center;height:38px;line-height:1;font-size:13px}
+.layout{display:grid;grid-template-columns:255px 1fr;min-height:calc(100vh - 76px)}.sidebar{background:#fff;border-right:1px solid var(--border);padding:25px 15px;display:flex;flex-direction:column}.side-section{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#94a2b7;font-weight:800;padding:0 14px 10px}.nav-item{width:100%;display:flex;align-items:center;gap:13px;padding:12px 14px;border-radius:12px;background:transparent;color:#304665;text-align:left;font-weight:700;margin:3px 0}.nav-item:hover{background:#f1f6ff;color:var(--blue)}.nav-item.active{background:#eaf2ff;color:var(--blue);box-shadow:inset 3px 0 0 var(--blue)}.nav-ico{width:22px;text-align:center;font-size:18px}.side-bottom{margin-top:auto}.create-side{width:100%;padding:13px 14px;border-radius:13px;background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;font-weight:800;box-shadow:0 9px 18px #2563eb29}.side-note{padding:18px 14px;color:#71819a;font-size:12px;line-height:1.5}
+.main{padding:28px;max-width:1550px;width:100%;margin:auto}.page-head{display:flex;justify-content:space-between;align-items:end;gap:15px;margin-bottom:22px}.page-head h1{margin:0;font-size:28px}.page-head p{margin:6px 0 0}.actions{display:flex;gap:10px;flex-wrap:wrap}.btn{padding:11px 16px;border-radius:11px;font-weight:800}.primary{background:var(--blue);color:#fff}.primary:hover{background:var(--blue2)}.secondary{background:#edf3fc;color:#17345d}.white-btn{background:#fff;color:var(--blue);font-weight:800}.danger{background:#fff0f0;color:#c62828}.ghost{background:transparent;color:#536984}
+.hero{position:relative;overflow:hidden;border-radius:22px;min-height:255px;padding:32px;color:#fff;background:linear-gradient(100deg,#102c58 0%,#2563eb 58%,#70b5ee 100%);box-shadow:var(--shadow);margin-bottom:22px}.hero:after{content:"";position:absolute;width:420px;height:420px;border-radius:50%;right:-110px;top:-170px;background:rgba(255,255,255,.12)}.hero:before{content:"SRM";position:absolute;right:60px;bottom:-45px;font-size:170px;font-weight:900;color:rgba(255,255,255,.08)}.hero-content{position:relative;z-index:2;max-width:720px}.eyebrow{display:inline-flex;background:#ffffff22;border:1px solid #ffffff3d;padding:6px 10px;border-radius:999px;font-size:11px;font-weight:900;letter-spacing:.08em}.hero h1{font-size:38px;margin:14px 0 8px}.hero p{font-size:16px;line-height:1.6;color:#eaf3ff;margin:0 0 22px}.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:22px}.stat{background:#fff;border:1px solid var(--border);border-radius:17px;padding:18px;box-shadow:var(--shadow);display:flex;align-items:center;gap:14px}.stat-icon{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:22px}.blue{background:#e8f1ff;color:#2563eb}.green{background:#e8f8ef;color:#16a34a}.orange{background:#fff5df;color:#d97706}.purple{background:#f0eaff;color:#7c3aed}.stat-num{font-size:25px;font-weight:900}.stat-label{font-size:13px;color:var(--muted);margin-top:3px}
+.two-col{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(320px,.9fr);gap:20px}.panel{background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow);overflow:hidden}.panel-head{display:flex;justify-content:space-between;align-items:center;padding:17px 19px;border-bottom:1px solid var(--border)}.panel-head h2{font-size:18px;margin:0}.panel-body{padding:16px 19px}.event-row{display:flex;gap:13px;padding:14px 0;border-bottom:1px solid #edf1f6;align-items:center}.event-row:last-child{border-bottom:0}.event-date{width:52px;height:58px;border-radius:13px;background:#eaf2ff;color:var(--blue);display:grid;place-items:center;text-align:center;flex:none}.event-date b{font-size:18px;line-height:1}.event-date span{font-size:10px;font-weight:800}.event-main{min-width:0;flex:1}.event-main h3{margin:0 0 5px;font-size:15px}.event-meta{font-size:12px;color:var(--muted);line-height:1.5}.club-row,.person-row{display:flex;align-items:center;gap:12px;padding:13px 0;border-bottom:1px solid #edf1f6}.club-row:last-child,.person-row:last-child{border-bottom:0}.club-icon{width:42px;height:42px;border-radius:12px;background:#eef4ff;display:grid;place-items:center;font-size:20px}.person-row .avatar{flex:none}.person-main{flex:1;min-width:0}.person-main b{font-size:14px}.person-main div{font-size:12px;color:var(--muted);margin-top:3px}.small-btn{padding:8px 11px;border-radius:9px;background:#edf3fc;color:var(--blue);font-weight:800;font-size:12px}
+.section-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid var(--border);border-radius:17px;padding:18px;box-shadow:var(--shadow)}.card h3,.card h2{margin-top:0}.tag{display:inline-flex;padding:5px 9px;border-radius:999px;background:#eaf2ff;color:var(--blue);font-size:11px;font-weight:900}.pill{display:inline-block;background:#eef4ff;color:#315c9e;padding:5px 8px;border-radius:999px;font-size:11px;margin:3px}.toolbar{display:flex;gap:10px;align-items:center;margin-bottom:18px}.toolbar input,.toolbar select{height:44px}.toolbar input{flex:1}.field,textarea,select,input{border:1px solid var(--border);border-radius:10px;background:#fff;padding:11px 12px;outline:0}.field:focus,textarea:focus,select:focus,input:focus{border-color:#9dbdff;box-shadow:0 0 0 3px #2563eb12}.toolbar .field{min-width:180px}.post-card{margin-bottom:13px}.post-head{display:flex;align-items:center;gap:11px}.post-body{padding-left:49px}.post-actions{display:flex;gap:8px;padding-left:49px;margin-top:10px}.notice{display:flex;gap:13px;padding:15px 0;border-bottom:1px solid #edf1f6}.notice:last-child{border-bottom:0}.notice-icon{width:44px;height:44px;border-radius:13px;background:#edf4ff;display:grid;place-items:center;font-size:19px;flex:none}
+.profile-card{display:grid;grid-template-columns:110px 1fr;gap:25px;align-items:center}.profile-big{width:96px;height:96px;border-radius:26px;background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;display:grid;place-items:center;font-size:28px;font-weight:900}.profile-info h2{margin:0 0 6px}.profile-info p{margin:5px 0}.role-tag{font-weight:900;text-transform:uppercase}
+.progress-wrap{margin:14px 0 4px}.progress-track{height:9px;background:#edf2f8;border-radius:99px;overflow:hidden}.progress-fill{height:100%;background:linear-gradient(90deg,#2563eb,#4f46e5);border-radius:99px}.progress-label{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px}
+.quick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}.quick-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px;box-shadow:var(--shadow)}.quick-card b{display:block;font-size:15px;margin-bottom:5px}.quick-card span{font-size:12px;color:var(--muted)}
+.notification-panel{position:absolute;right:0;top:50px;width:330px;background:#fff;border:1px solid var(--border);border-radius:16px;box-shadow:0 18px 45px rgba(20,45,85,.16);padding:8px;z-index:40}.notification-item{padding:12px;border-radius:11px}.notification-item:hover{background:#f4f7fb}.notification-item b{font-size:13px}.notification-item div{font-size:12px;color:var(--muted);margin-top:3px}
+.status-chip{display:inline-flex;padding:5px 9px;border-radius:999px;background:#e8f8ef;color:#15803d;font-size:11px;font-weight:900}
+@media(max-width:700px){.quick-grid{grid-template-columns:1fr}}.modal{position:fixed;inset:0;background:rgba(10,23,45,.5);display:grid;place-items:center;padding:20px;z-index:50}.modal-box{width:min(650px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:18px;padding:22px;box-shadow:0 25px 70px #10213f33}.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}.modal-head h2{margin:0}.fg{margin-bottom:14px}.fg label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.toast{position:fixed;right:22px;bottom:22px;background:#10213f;color:#fff;padding:13px 16px;border-radius:12px;box-shadow:0 12px 30px #10213f33;z-index:100;display:none}.toast.show{display:block}.loading{padding:35px;text-align:center;color:var(--muted)}.empty{padding:30px;text-align:center;color:var(--muted)}
+.auth{min-height:100vh;display:grid;place-items:center;padding:25px;background:linear-gradient(135deg,#edf4ff,#f8fbff)}.auth-card{width:min(470px,100%);background:#fff;border:1px solid var(--border);border-radius:22px;padding:32px;box-shadow:0 20px 60px rgba(25,60,110,.1)}.auth-brand{display:flex;align-items:center;gap:12px;margin-bottom:24px}.auth-card h1{font-size:34px;margin:0 0 6px}.auth-card .sub{margin:0 0 24px;color:var(--muted)}.auth-tabs{display:grid;grid-template-columns:1fr 1fr;background:#edf2f8;padding:4px;border-radius:12px;margin-bottom:22px}.auth-tabs button{padding:11px;border-radius:9px;background:transparent;font-weight:800;color:#526783}.auth-tabs .active{background:#2563eb;color:#fff}.auth-note{font-size:12px;line-height:1.5;color:var(--muted);margin-top:15px}.auth-links{display:flex;justify-content:flex-end;margin-top:10px}.link-btn{background:transparent;color:var(--blue);font-size:12px;font-weight:800;padding:2px 0}.link-btn:hover{text-decoration:underline}.btn.joined,.small-btn.joined{background:#e8f8ef;color:#15803d}
+@media(max-width:1050px){.layout{grid-template-columns:85px 1fr}.sidebar{padding:20px 10px}.side-section,.nav-item span:not(.nav-ico),.side-note,.create-side{display:none}.nav-item{justify-content:center;padding:13px}.brand{min-width:auto}.brand-name-wrap,.top-search{display:none}.stats{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.section-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.topbar{padding:0 14px}.top-actions .profile-mini span{display:none}.layout{display:block}.sidebar{display:none}.main{padding:18px 14px}.hero{padding:24px;min-height:220px}.hero h1{font-size:29px}.stats,.section-grid{grid-template-columns:1fr}.page-head{align-items:flex-start;flex-direction:column}.toolbar{flex-direction:column;align-items:stretch}.toolbar .field{min-width:0}.form-grid{grid-template-columns:1fr}.profile-card{grid-template-columns:1fr}.brand-sub{display:none}}
+</style>
+</head>
+<body>
+<div id="app"></div><div id="toast" class="toast"></div>
+<script>
+const state={
+  token:localStorage.getItem("cc_token"),
+  user:JSON.parse(localStorage.getItem("cc_user")||"null"),
+  registeredEvents:JSON.parse(localStorage.getItem("cc_registered_events")||"[]"),
+  joinedClubs:JSON.parse(localStorage.getItem("cc_joined_clubs")||"[]"),
+  connectionSent:JSON.parse(localStorage.getItem("cc_connection_sent")||"[]"),
+  teamRequests:JSON.parse(localStorage.getItem("cc_team_requests")||"[]")
+};
+function isRegistered(id){return state.registeredEvents.includes(String(id))}
+function isJoined(id){return state.joinedClubs.includes(String(id))}
+function markRegistered(id){id=String(id);if(!state.registeredEvents.includes(id))state.registeredEvents.push(id);localStorage.setItem("cc_registered_events",JSON.stringify(state.registeredEvents))}
+function markJoined(id){id=String(id);if(!state.joinedClubs.includes(id))state.joinedClubs.push(id);localStorage.setItem("cc_joined_clubs",JSON.stringify(state.joinedClubs))}
+function isConnectionSent(id){return state.connectionSent.includes(String(id))}
+function markConnectionSent(id){id=String(id);if(!state.connectionSent.includes(id))state.connectionSent.push(id);localStorage.setItem("cc_connection_sent",JSON.stringify(state.connectionSent))}
+function isTeamRequested(id){return state.teamRequests.includes(String(id))}
+function markTeamRequested(id){id=String(id);if(!state.teamRequests.includes(id))state.teamRequests.push(id);localStorage.setItem("cc_team_requests",JSON.stringify(state.teamRequests))}
+const demoStudents=[
+  {_id:"demo-student-1",name:"Priya Sharma",department:"CSE",year:"2nd Year",skills:["Python","UI/UX","React"],interests:["Hackathons","Photography"]},
+  {_id:"demo-student-2",name:"Rahul Menon",department:"ECE",year:"2nd Year",skills:["C++","Arduino","IoT"],interests:["Robotics","Tech"]},
+  {_id:"demo-student-3",name:"Sneha R",department:"CSE",year:"3rd Year",skills:["Java","MongoDB","Node.js"],interests:["Web Development","Music"]}
+];
+const demoPosts=[
+  {_id:"demo-post-1",author:{name:"Priya Sharma",department:"CSE",year:"2nd Year"},tag:"Campus Life",text:"Anyone interested in forming a team for the upcoming HackSRM 2026? Looking for people interested in development and UI/UX.",likes:[]},
+  {_id:"demo-post-2",author:{name:"Rahul Menon",department:"ECE",year:"2nd Year"},tag:"Projects",text:"Our IoT project group is looking for one more member who knows ESP32 or Arduino. Drop a comment if interested!",likes:[]},
+  {_id:"demo-post-3",author:{name:"Sneha R",department:"CSE",year:"3rd Year"},tag:"Events",text:"Photography Club is planning a campus photo walk this month. Students from all departments are welcome.",likes:[]}
+];
+
+const demoLikeCounts=JSON.parse(localStorage.getItem("cc_demo_like_counts")||"{}");
+function demoLikeCount(id,base=0){return demoLikeCounts[String(id)] ?? base}
+function incrementDemoLike(id,base=0){
+  id=String(id);
+  demoLikeCounts[id]=demoLikeCount(id,base)+1;
+  localStorage.setItem("cc_demo_like_counts",JSON.stringify(demoLikeCounts));
+}
+
+const demoTeamRequests=JSON.parse(localStorage.getItem("cc_demo_team_requests")||"[]");
+function isDemoTeamRequested(id){return demoTeamRequests.includes(String(id))}
+function markDemoTeamRequested(id){
+  id=String(id);
+  if(!demoTeamRequests.includes(id))demoTeamRequests.push(id);
+  localStorage.setItem("cc_demo_team_requests",JSON.stringify(demoTeamRequests));
+}
+const demoTeams=[
+  {_id:"demo-team-1",type:"Hackathon",title:"HackSRM 2026 — Smart Campus",owner:{name:"Priya Sharma"},description:"Looking for developers and a UI/UX designer to build a smart-campus solution.",skillsNeeded:["React","Node.js","UI/UX"]},
+  {_id:"demo-team-2",type:"Academic",title:"AI & Data Analytics Project",owner:{name:"Sneha R"},description:"Looking for teammates for an academic project involving Python, data analysis and visualization.",skillsNeeded:["Python","Pandas","Power BI"]},
+  {_id:"demo-team-3",type:"Creative",title:"Campus Media Team",owner:{name:"Rahul Menon"},description:"Building a small team for photography, video editing and social-media content.",skillsNeeded:["Photography","Video Editing","Design"]}
+];
+
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
+async function api(url,opt={}){opt.headers=Object.assign({"Content-Type":"application/json"},opt.headers||{});if(state.token)opt.headers.Authorization="Bearer "+state.token;const r=await fetch("/api"+url,opt);const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.message||"Request failed");return d}
+function toast(x){const t=$("toast");t.textContent=x;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2400)}
+function initials(n){return(n||"Student").split(" ").filter(Boolean).map(x=>x[0]).join("").slice(0,2).toUpperCase()}
+function saveAuth(d){state.token=d.token;state.user=d.user;localStorage.setItem("cc_token",d.token);localStorage.setItem("cc_user",JSON.stringify(d.user))}
+function logout(){localStorage.removeItem("cc_token");localStorage.removeItem("cc_user");state.token=null;state.user=null;location.hash="";login()}
+function go(p){location.hash=p}
+function parseDateParts(s){const m=String(s||"").match(/(?:^|\s)(\d{1,2})\s+([A-Za-z]{3})/);return m?{day:m[1],month:m[2].toUpperCase()}:null}
+
+function login(){
+$('app').innerHTML=`<div class="auth"><div class="auth-card"><div class="auth-brand"><div class="brand-mark">🎓</div><div><div class="brand-name">Campus Connect</div><div class="brand-sub">SRM Ramapuram</div></div></div><h1>Welcome to Campus Connect</h1><p class="sub">Your campus. Your community. Your connect.</p><div class="auth-tabs"><button id="studentLogin" class="active" type="button">🎓 Student Login</button><button id="adminLogin" type="button">🛡️ Admin Login</button></div><div class="auth-tabs" style="margin-top:-10px"><button id="lt" class="active" type="button">Login</button><button id="st" type="button">Create account</button></div><form id="authForm"><div id="extra"></div><div class="fg"><label>SRM Email</label><input id="email" type="email" required placeholder="you@srmist.edu.in"></div><div class="fg"><label>Password</label><input id="password" type="password" required minlength="6" placeholder="Enter your password"></div><button id="loginButton" class="btn primary" style="width:100%;padding:13px">Login as Student</button></form><div class="auth-links"><button type="button" class="link-btn" onclick="forgotPassword()">Forgot password?</button></div><p class="auth-note">Students can create their own account. Admin accounts are created by the platform administrator.</p></div></div>`;
+let signup=false, loginType='student';
+const roleMode=()=>{document.getElementById('studentLogin').className=loginType==='student'?'active':'';document.getElementById('adminLogin').className=loginType==='admin'?'active':'';document.getElementById('st').style.display=loginType==='student'?'block':'none';if(loginType==='admin'&&signup){signup=false;mode()}document.getElementById('loginButton').textContent=signup?'Create Student Account':(loginType==='admin'?'Login as Admin':'Login as Student')};
+const mode=()=>{document.getElementById('lt').className=signup?'':'active';document.getElementById('st').className=signup?'active':'';document.getElementById('extra').innerHTML=signup?`<div class="fg"><label>Full name</label><input id="name" required placeholder="Your full name"></div><div class="form-grid"><div class="fg"><label>Department</label><select id="dept"><option>CSE</option><option>ECE</option><option>EEE</option><option>MECH</option><option>Other</option></select></div><div class="fg"><label>Year</label><select id="year"><option>1st Year</option><option selected>2nd Year</option><option>3rd Year</option><option>4th Year</option></select></div></div><div class="fg"><label>Skills <span class="muted">(optional)</span></label><input id="skills" placeholder="Python, Java, UI/UX"></div><div class="fg"><label>Interests <span class="muted">(optional)</span></label><input id="interests" placeholder="Photography, Music, Technology"></div>`:'';document.getElementById('loginButton').textContent=signup?'Create Student Account':(loginType==='admin'?'Login as Admin':'Login as Student')};
+document.getElementById('studentLogin').onclick=()=>{loginType='student';roleMode()};
+document.getElementById('adminLogin').onclick=()=>{loginType='admin';roleMode()};
+document.getElementById('lt').onclick=()=>{signup=false;mode()};
+document.getElementById('st').onclick=()=>{if(loginType==='student'){signup=true;mode()}};
+mode();roleMode();
+document.getElementById('authForm').onsubmit=async e=>{e.preventDefault();try{const body={email:document.getElementById('email').value,password:document.getElementById('password').value,loginType};if(signup)Object.assign(body,{name:document.getElementById('name').value,department:document.getElementById('dept').value,year:document.getElementById('year').value,skills:document.getElementById('skills').value.split(',').map(x=>x.trim()).filter(Boolean),interests:document.getElementById('interests').value.split(',').map(x=>x.trim()).filter(Boolean)});const d=await api(signup?'/auth/register':'/auth/login',{method:'POST',body:JSON.stringify(body)});saveAuth(d);location.hash=d.user.role==='super_admin'?'admin':'dashboard';render()}catch(err){toast(err.message)}};
+}
+
+function forgotPassword(){
+  modal('Reset Password',`<form id="resetForm">
+    <div class="fg"><label>SRM Email</label><input id="resetEmail" type="email" required placeholder="you@srmist.edu.in"></div>
+    <p class="muted" style="font-size:13px;line-height:1.5">Enter your SRM email to request a password reset.</p>
+    <button class="btn primary" style="width:100%">Send reset request</button>
+  </form>`);
+  $('resetForm').onsubmit=async e=>{
+    e.preventDefault();
+    try{
+      await api('/auth/forgot-password',{method:'POST',body:JSON.stringify({email:$('resetEmail').value})});
+      closeModal();
+      toast('Password reset request sent');
+    }catch(err){
+      toast(err.message||'Password reset request could not be sent');
+    }
+  };
+}
+
+function nav(active){
+const isAdmin=state.user?.role==='super_admin';
+const items=isAdmin
+  ? [['admin','⚙','Admin Control Center'],['dashboard','⌂','Dashboard'],['workshops','🛠️','Workshops'],['notifications','♢','Notifications'],['profile','○','Admin Profile']]
+  : [['dashboard','⌂','Dashboard'],['events','◫','Events'],['clubs','♟','Clubs'],['workshops','🛠️','Workshops'],['community','▱','Community'],['students','♙','Student Connect'],['teamfinder','◎','Team Finder'],['notices','▤','Notice Board'],['notifications','♢','Notifications'],['profile','○','My Profile']];
+$('app').innerHTML=`<div class="app-shell"><header class="topbar"><div class="brand"><div class="brand-mark">🎓</div><div class="brand-name-wrap"><div class="brand-name">Campus Connect</div><div class="brand-sub">SRM Ramapuram</div></div></div><div class="top-search"><span class="search-icon">⌕</span><input id="globalSearch" placeholder="Search events, clubs, people..." onkeydown="globalSearch(event)"></div><div class="top-actions"><button class="icon-btn" onclick="go('notifications')">♢</button><button class="profile-mini" onclick="go('profile')"><span class="avatar">${initials(state.user?.name)}</span><span>${esc(state.user?.name||'Student')}</span><b>⌄</b></button></div></header><div class="layout"><aside class="sidebar"><div class="side-section">Campus</div>${items.map(i=>`<button class="nav-item ${active===i[0]?'active':''}" onclick="go('${i[0]}')"><span class="nav-ico">${i[1]}</span><span>${i[2]}</span></button>`).join('')}<div class="side-bottom">${isAdmin?'': '<button class="create-side" onclick="newPost()">＋ Create Post</button>'}<div class="side-note"><b>Campus Connect</b><br>Build · Connect · Grow</div></div></aside><main id="main" class="main"></main></div></div>`;
+}
+function shell(title,sub,active){nav(active);$('main').innerHTML=`<div class="page-head"><div><h1>${title}</h1><p class="muted">${sub}</p></div><div class="actions" id="headActions"></div></div><div id="content"></div>`}
+
+async function ensureSeed(){try{await api('/dev/seed',{method:'POST'})}catch(e){}}
+async function dashboard(){
+  if(state.user?.role==='super_admin'){
+    shell('Dashboard','Admin overview for approvals and official workshops.','dashboard');
+    $('content').innerHTML='<div class="loading">Loading admin dashboard...</div>';
+    try{
+      const [stats,eventsPending,clubsPending,workshops]=await Promise.all([api('/admin/stats'),api('/admin/events/pending'),api('/admin/clubs/pending'),api('/admin/workshops')]);
+      $('content').innerHTML=`<section class="hero"><div class="hero-content"><h1>Welcome back, Campus Admin! 👋</h1><p>Manage student approvals and publish official workshops from one place.</p><div class="hero-actions"><button class="btn white-btn" onclick="go('admin')">⚙ Open Admin Control Center</button><button class="btn" style="background:#ffffff22;color:#fff;border:1px solid #ffffff55" onclick="go('workshops')">🛠️ View Workshops</button></div></div></section><section class="stats"><div class="stat"><div class="stat-icon blue">◫</div><div><div class="stat-num">${eventsPending.length}</div><div class="stat-label">Pending Events</div></div></div><div class="stat"><div class="stat-icon green">♟</div><div><div class="stat-num">${clubsPending.length}</div><div class="stat-label">Pending Clubs</div></div></div><div class="stat"><div class="stat-icon purple">🛠️</div><div><div class="stat-num">${workshops.length}</div><div class="stat-label">Published Workshops</div></div></div><div class="stat"><div class="stat-icon orange">♙</div><div><div class="stat-num">${stats.users}</div><div class="stat-label">Registered Users</div></div></div></section><div class="two-col"><section class="panel"><div class="panel-head"><h2>Approval Queue</h2><button class="ghost" onclick="go('admin')">Open →</button></div><div class="panel-body"><div class="card" style="margin-bottom:12px"><b>${eventsPending.length} Event${eventsPending.length===1?'':'s'} awaiting approval</b><p class="muted" style="margin:6px 0 0">Student-created events appear here until approved.</p></div><div class="card"><b>${clubsPending.length} Club${clubsPending.length===1?'':'s'} awaiting approval</b><p class="muted" style="margin:6px 0 0">Student-created clubs appear here until approved.</p></div></div></section><section class="panel"><div class="panel-head"><h2>Latest Workshops</h2><button class="ghost" onclick="go('workshops')">Manage →</button></div><div class="panel-body">${workshops.slice(0,4).map(x=>`<div class="notice"><div class="notice-icon">🛠️</div><div><b>${esc(x.title)}</b><p class="muted" style="margin:5px 0">${esc(x.date)} · ${esc(x.time)} · ${esc(x.place)}</p></div></div>`).join('')||'<div class="empty">No workshops published yet.</div>'}</div></section></div>`;
+    }catch(e){$('content').innerHTML=`<div class="card"><h3>Could not load admin dashboard</h3><p class="muted">${esc(e.message)}</p></div>`}
+    return;
+  }
+  shell('Dashboard',`Good to see you, ${state.user?.name||'Student'}.`,'dashboard');$('content').innerHTML='<div class="loading">Loading your campus...</div>';await ensureSeed();try{const [ev,clubs,teams,students,posts]=await Promise.all([api('/events'),api('/clubs'),api('/teams'),api('/students'),api('/posts')]);const upcoming=ev.slice(0,4),popular=clubs.slice(0,4),people=students.filter(x=>x._id!==state.user?.id).slice(0,3);$('content').innerHTML=`<section class="hero"><div class="hero-content"><h1>Welcome back, ${esc(state.user?.name||'Student')}! 👋</h1><p>Discover events, join clubs, share what is happening on campus and find people to build with at SRM Ramapuram.</p><div class="hero-actions"><button class="btn white-btn" onclick="go('events')">◫ Explore Events</button><button class="btn" style="background:#ffffff22;color:#fff;border:1px solid #ffffff55" onclick="go('students')">♙ Find Students</button><button class="btn" style="background:#ffffff22;color:#fff;border:1px solid #ffffff55" onclick="go('workshops')">🛠️ View Workshops</button><button class="btn" style="background:#ffffff22;color:#fff;border:1px solid #ffffff55" onclick="go('profile')">👤 My Profile</button></div></div></section><section class="stats"><div class="stat"><div class="stat-icon blue">◫</div><div><div class="stat-num">${ev.length}</div><div class="stat-label">Upcoming Events</div></div></div><div class="stat"><div class="stat-icon green">♟</div><div><div class="stat-num">${clubs.length}</div><div class="stat-label">Active Clubs</div></div></div><div class="stat"><div class="stat-icon orange">♙</div><div><div class="stat-num">${students.length}</div><div class="stat-label">Students on Platform</div></div></div><div class="stat"><div class="stat-icon purple">◎</div><div><div class="stat-num">${teams.length}</div><div class="stat-label">Open Teams</div></div></div></section><div class="two-col"><section class="panel"><div class="panel-head"><h2>Upcoming Events</h2><button class="ghost" onclick="go('events')">View all →</button></div><div class="panel-body">${upcoming.length?upcoming.map(eventRow).join(''):'<div class="empty">No events yet.</div>'}</div></section><section class="panel"><div class="panel-head"><h2>Popular Clubs</h2><button class="ghost" onclick="go('clubs')">View all →</button></div><div class="panel-body">${popular.length?popular.map(clubRow).join(''):'<div class="empty">No clubs yet.</div>'}</div></section></div><div class="two-col" style="margin-top:20px"><section class="panel"><div class="panel-head"><h2>Recent Community Posts</h2><button class="ghost" onclick="go('community')">View all →</button></div><div class="panel-body">${posts.slice(0,3).map(postPreview).join('')||'<div class="empty">No posts yet.</div>'}</div></section><section class="panel"><div class="panel-head"><h2>Suggested Connections</h2><button class="ghost" onclick="go('students')">View all →</button></div><div class="panel-body">${people.length?people.map(personRow).join(''):'<div class="empty">Create more student accounts to see suggestions.</div>'}</div></section></div>`}catch(e){$('content').innerHTML=`<div class="card"><h3>Could not load dashboard</h3><p class="muted">${esc(e.message)}</p><button class="btn primary" onclick="dashboard()">Retry</button></div>`}}
+function eventRow(e){
+  const d=parseDateParts(e.date), registered=isRegistered(e._id);
+  return `<div class="event-row"><div class="event-date">${d?`<b>${esc(d.day)}</b><span>${esc(d.month)}</span>`:'◫'}</div><div class="event-main"><h3>${esc(e.title)}</h3><div class="event-meta">${esc(e.time||'Time TBA')} · ${esc(e.place||'Venue TBA')}<br>${esc(e.category||'Campus event')}</div></div><button class="small-btn ${registered?'joined':''}" ${registered?'disabled':''} onclick="registerEvent('${e._id}')">${registered?'Registered':'Register'}</button></div>`
+}
+function clubRow(x){
+  const joined=isJoined(x._id);
+  return `<div class="club-row"><div class="club-icon">${x.icon||'♟'}</div><div class="person-main"><b>${esc(x.name)}</b><div>${esc(x.category||'Campus club')}</div></div><button class="small-btn ${joined?'joined':''}" ${joined?'disabled':''} onclick="joinClub('${x._id}')">${joined?'Joined':'Join'}</button></div>`
+}
+function personRow(x){return `<div class="person-row"><div class="avatar">${initials(x.name)}</div><div class="person-main"><b>${esc(x.name)}</b><div>${esc(x.department||'Student')} · ${esc(x.year||'')}</div></div><button class="small-btn" onclick="connect('${x._id}')">Connect</button></div>`}
+function postPreview(x){return `<div class="post-card"><div class="post-head"><div class="avatar">${initials(x.author?.name)}</div><div><b>${esc(x.author?.name||'Student')}</b><div class="muted" style="font-size:12px">${esc(x.tag||'Discussion')} · ${x.likes?.length||0} likes</div></div></div><div class="post-body"><p style="margin:9px 0">${esc(x.text)}</p></div></div>`}
+
+async function events(){shell('Events','Discover campus activities and submit your own event.','events');$('headActions').innerHTML='<button type="button" class="btn secondary" onclick="mySubmissions()">My Submissions</button><button type="button" class="btn primary" onclick="openCreateEventModal()">＋ Create Event</button>';$('content').innerHTML=`<div class="toolbar"><input class="field" id="eq" placeholder="Search events by title, venue or description"><select class="field" id="ec"><option value="">All categories</option><option>Technical</option><option>Cultural</option><option>Sports</option></select></div><div id="elist" class="section-grid"></div>`;await loadEvents();$('eq').oninput=loadEvents;$('ec').onchange=loadEvents}
+async function loadEvents(){let e=await api('/events');const q=$('eq')?.value.toLowerCase()||'',c=$('ec')?.value||'';e=e.filter(x=>(x.title+' '+x.description+' '+x.place).toLowerCase().includes(q)&&(!c||x.category===c));$('elist').innerHTML=e.map(x=>`<article class="card"><span class="tag">${esc(x.category||'Event')}</span><h3 style="margin:12px 0 7px">${esc(x.title)}</h3><p class="muted" style="font-size:13px;line-height:1.6">◫ ${esc(x.date)} · ${esc(x.time)}<br>⌖ ${esc(x.place)}<br>♙ ${x.registeredUsers?.length||0} registered</p>${isRegistered(x._id)?'<span class="status-chip">Registered</span>':''}<p style="line-height:1.5">${esc(x.description)}</p><button class="btn primary ${isRegistered(x._id)?'joined':''}" ${isRegistered(x._id)?'disabled':''} onclick="registerEvent('${x._id}')">${isRegistered(x._id)?'Registered':'Register'}</button></article>`).join('')||'<div class="card empty">No events match your search.</div>'}
+async function registerEvent(id){
+  if(isRegistered(id)){toast('You are already registered for this event');return}
+  try{
+    await api('/events/'+id+'/register',{method:'POST'});
+    markRegistered(id);
+    toast('Registered successfully');
+    if($('elist')) loadEvents();
+    if(location.hash==='#dashboard') dashboard();
+  }catch(e){toast(e.message)}
+}
+function openCreateEventModal(){
+  if(state.user?.role!=='student'){toast('Only students can submit events');return;}
+  modal('Create an Event',`<form id="ef"><div class="fg"><label>Event title</label><input id="et" required placeholder="e.g. Coding Meetup"></div><div class="form-grid"><div class="fg"><label>Category</label><select id="ecat"><option>Technical</option><option>Cultural</option><option>Sports</option></select></div><div class="fg"><label>Date</label><input id="ed" required placeholder="25 Sep 2026"></div></div><div class="form-grid"><div class="fg"><label>Time</label><input id="etime" required placeholder="10:00 AM"></div><div class="fg"><label>Venue</label><input id="ep" required placeholder="Seminar Hall"></div></div><div class="fg"><label>Description</label><textarea id="edesc" rows="4" required placeholder="Describe the event"></textarea></div><button type="submit" class="btn primary" style="width:100%">Submit for Approval</button></form>`);
+  $('ef').onsubmit=async e=>{
+    e.preventDefault();
+    const payload={title:$('et').value.trim(),category:$('ecat').value,date:$('ed').value.trim(),time:$('etime').value.trim(),place:$('ep').value.trim(),description:$('edesc').value.trim()};
+    if(!payload.title||!payload.date||!payload.time||!payload.place||!payload.description){toast('Please complete all event fields');return}
+    try{await api('/events',{method:'POST',body:JSON.stringify(payload)});closeModal();toast('Event submitted for admin approval');await events();}
+    catch(x){toast(x.message||'Event could not be submitted')}
+  };
+}
+
+async function mySubmissions(){shell('My Event Submissions','Track the events you have submitted for approval.','events');const data=await api('/my-event-submissions');$('headActions').innerHTML="<button class='btn secondary' onclick=\"go('events')\">← Back to Events</button>";$('content').innerHTML=data.map(x=>`<article class="card" style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;gap:10px"><div><span class="tag">${esc(x.category)}</span><h3 style="margin:10px 0 5px">${esc(x.title)}</h3><p class="muted">${esc(x.date)} · ${esc(x.time)} · ${esc(x.place)}</p></div><span class="status-chip" style="background:${x.status==='approved'?'#e8f8ef':x.status==='rejected'?'#fff0f0':'#fff7df'};color:${x.status==='approved'?'#15803d':x.status==='rejected'?'#c62828':'#a16207'}">${esc(x.status)}</span></div><p>${esc(x.description)}</p></article>`).join('')||'<div class="card empty">You have not submitted any events yet.</div>'}
+
+
+async function clubs(){shell('Clubs & Communities','Find communities, join clubs and meet students with similar interests.','clubs');$('headActions').innerHTML='<button class="btn primary" onclick="createClub()">＋ Create Club</button>';$('content').innerHTML='<div id="clist" class="section-grid"></div>';await ensureSeed();const c=await api('/clubs');$('clist').innerHTML=c.map(x=>`<article class="card"><div class="club-icon" style="margin-bottom:14px">${x.icon||'♟'}</div><span class="tag">${esc(x.category||'Club')}</span><h2 style="margin:11px 0 6px;font-size:19px">${esc(x.name)}</h2><p class="muted" style="line-height:1.5">${esc(x.description)}</p>${isJoined(x._id)?'<span class="status-chip">Joined</span>':''}<div style="height:8px"></div><button class="btn primary ${isJoined(x._id)?'joined':''}" ${isJoined(x._id)?'disabled':''} onclick="joinClub('${x._id}')">${isJoined(x._id)?'Joined':'Join Club'}</button></article>`).join('')}
+async function joinClub(id){
+  if(isJoined(id)){toast('You have already joined this club');return}
+  try{
+    await api('/clubs/'+id+'/join',{method:'POST'});
+    markJoined(id);
+    toast('Joined club successfully');
+    if(location.hash==='#clubs') clubs();
+    if(location.hash==='#dashboard') dashboard();
+  }catch(e){toast(e.message)}
+}
+
+function createClub(){
+
+  modal('Create a Club',`
+
+    <form id="clubForm">
+
+      <div class="fg">
+        <label>Club name</label>
+        <input
+          id="cn"
+          required
+          placeholder="Coding Club"
+        >
+      </div>
+
+      <div class="form-grid">
+
+        <div class="fg">
+          <label>Category</label>
+
+          <select id="cc">
+            <option>Technical</option>
+            <option>Creative</option>
+            <option>Cultural</option>
+            <option>Sports</option>
+            <option>Academic</option>
+          </select>
+
+        </div>
+
+        <div class="fg">
+          <label>Icon</label>
+
+          <input
+            id="ci"
+            value="♟"
+            maxlength="2"
+          >
+
+        </div>
+
+      </div>
+
+      <div class="fg">
+
+        <label>Description</label>
+
+        <textarea
+          id="cd"
+          rows="4"
+          required
+          placeholder="Tell students what this club is about"
+        ></textarea>
+
+      </div>
+
+      <button class="btn primary">
+        Submit Club for Approval
+      </button>
+
+    </form>
+
+  `);
+
+  $('clubForm').onsubmit = async e => {
+
+    e.preventDefault();
+
+    try {
+
+      await api('/clubs', {
+        method: 'POST',
+
+        body: JSON.stringify({
+
+          name: $('cn').value,
+
+          category: $('cc').value,
+
+          icon: $('ci').value,
+
+          description: $('cd').value
+
+        })
+
+      });
+
+      closeModal();
+
+      toast('Club submitted for admin approval');
+
+      clubs();
+
+    } catch(err) {
+
+      toast(err.message);
+
+    }
+
+  };
+
+}
+async function community(){
+  shell('Community','Share campus discussions, ideas and updates with other students.','community');
+  $('headActions').innerHTML='<button class="btn primary" onclick="newPost()">＋ Create Post</button>';
+  $('content').innerHTML='<div id="plist"></div>';
+  let p=await api('/posts');
+  if(!p.length)p=demoPosts;
+  $('plist').innerHTML=p.map(x=>`<article class="card post-card"><div class="post-head"><div class="avatar">${initials(x.author?.name)}</div><div><b>${esc(x.author?.name||'Student')}</b><div class="muted" style="font-size:12px">${esc(x.author?.department||'')} · ${esc(x.author?.year||'')} · ${esc(x.tag||'General')}</div></div></div><div class="post-body"><p style="line-height:1.6">${esc(x.text)}</p></div><div class="post-actions"><button class="small-btn" onclick="likePost('${x._id}')">♡ ${String(x._id).startsWith('demo-')?demoLikeCount(x._id,x.likes?.length||0):(x.likes?.length||0)} Likes</button></div></article>`).join('');
+}
+function newPost(){modal('Create a Community Post',`<form id="pf"><div class="fg"><label>Topic</label><select id="pt"><option>General</option><option>Campus Life</option><option>Events</option><option>Clubs</option><option>Team Finder</option><option>Academics</option></select></div><div class="fg"><label>Your thoughts</label><textarea id="px" rows="5" required placeholder="What do you want to share with the campus community?"></textarea></div><button class="btn primary">Publish Post</button></form>`);$('pf').onsubmit=async e=>{e.preventDefault();try{await api('/posts',{method:'POST',body:JSON.stringify({tag:$('pt').value,text:$('px').value})});closeModal();community();toast('Post published')}catch(x){toast(x.message)}}}
+async function likePost(id){
+  if(String(id).startsWith('demo-')){
+    const post=demoPosts.find(x=>String(x._id)===String(id));
+    incrementDemoLike(id,post?.likes?.length||0);
+    toast('Post liked');
+    community();
+    return;
+  }
+  try{await api('/posts/'+id+'/like',{method:'POST'});community()}catch(e){toast(e.message)}
+}
+
+async function students(){shell('Student Connect','Find classmates by name, department, skills or interests.','students');$('headActions').innerHTML='<button class="btn primary" onclick="editProfile()">＋ Update My Profile</button>';$('content').innerHTML=`<div class="toolbar"><input class="field" id="sq" placeholder="Search students, skills or interests..."></div><div id="slist" class="section-grid"></div>`;await loadStudents();$('sq').oninput=loadStudents}
+async function loadStudents(){
+  const q=($('sq')?.value||'').toLowerCase().trim();
+  let s=await api('/students?q='+encodeURIComponent(q));
+  if(!s.length || s.filter(x=>x._id!==state.user?.id).length===0)s=demoStudents.filter(x=>(x.name+' '+x.department+' '+x.year+' '+(x.skills||[]).join(' ')+' '+(x.interests||[]).join(' ')).toLowerCase().includes(q));
+  $('slist').innerHTML=s.filter(x=>x._id!==state.user?.id).map(x=>{const sent=isConnectionSent(x._id);return `<article class="card"><div class="post-head"><div class="avatar">${initials(x.name)}</div><div><h3 style="margin:0">${esc(x.name)}</h3><div class="muted" style="font-size:12px">${esc(x.department)} · ${esc(x.year)}</div></div></div><div style="margin:14px 0">${(x.skills||[]).map(k=>`<span class="pill">${esc(k)}</span>`).join('')||'<span class="muted">Skills not added yet</span>'}</div><p class="muted" style="font-size:12px;margin:0 0 12px">Interests: ${esc((x.interests||[]).join(', ')||'Not added')}</p><button class="btn primary ${sent?'joined':''}" ${sent?'disabled':''} onclick="connect('${x._id}')">${sent?'Connection Sent':'Connect'}</button></article>`}).join('')||'<div class="card empty">No students found. Try another search.</div>';
+}
+async function connect(id){
+  if(isConnectionSent(id)){toast('Connection request already sent');return}
+  try{await api('/students/'+id+'/connect',{method:'POST'});markConnectionSent(id);toast('Connection request sent');loadStudents()}catch(e){toast(e.message)}
+}
+
+async function notices(){shell('Campus Notice Board','Important student-facing updates in one place.','notices');$('content').innerHTML=`<div class="two-col"><section class="panel"><div class="panel-head"><h2>Latest Notices</h2></div><div class="panel-body">${[['📚','APP Project Review','Keep your prototype, database and explanation ready.'],['🏛️','Coding Club Workshop','New technical workshop information is available in Clubs.'],['📅','HackSRM Registration','Check Events for upcoming hackathon activities.'],['💬','Team Finder','Find collaborators for academic and hackathon projects.']].map(n=>`<div class="notice"><div class="notice-icon">${n[0]}</div><div><b>${n[1]}</b><p class="muted" style="margin:5px 0;line-height:1.5">${n[2]}</p></div></div>`).join('')}</div></section><section class="card"><h2>One platform for campus life</h2><p class="muted" style="line-height:1.7">Campus Connect brings events, clubs, student discussions, connections and team finding together. Admin-managed notices can be connected to MongoDB in the next iteration.</p></section></div>`}
+
+async function workshops(){
+  shell('Workshops','Official workshops published by Campus Admin for students.','workshops');
+  if(state.user?.role==='super_admin'){
+    $('headActions').innerHTML='<button class="btn primary" onclick="createWorkshop()">＋ Create Workshop</button>';
+  }
+  $('content').innerHTML='<div id="workshopList" class="section-grid"></div>';
+  try{
+    const ws=await api('/workshops');
+    $('workshopList').innerHTML=ws.map(x=>`<article class="card"><span class="tag">Official Workshop</span><h3 style="margin:12px 0 7px">${esc(x.title)}</h3><p class="muted" style="line-height:1.7">◫ ${esc(x.date)} · ${esc(x.time)}<br>⌖ ${esc(x.place)}</p><p style="line-height:1.6">${esc(x.description)}</p><span class="status-chip">Published</span></article>`).join('')||'<div class="card empty">No workshops have been published yet.</div>';
+  }catch(e){$('content').innerHTML=`<div class="card"><h3>Could not load workshops</h3><p class="muted">${esc(e.message)}</p></div>`}
+}
+
+async function notifications(){shell('Notifications','Stay updated with approvals, workshops and campus activity.','notifications');$('headActions').innerHTML='<button class="btn secondary" onclick="markAllNotifications()">Mark all as read</button>';let ns=await api('/notifications');$('content').innerHTML=`<section class="panel"><div class="panel-body">${ns.map(n=>`<div class="notice" style="opacity:${n.read?'.65':'1'}"><div class="notice-icon">${n.type==='workshop'?'🛠️':n.type==='event_approved'?'✅':n.type==='event_rejected'?'❌':n.type==='event_pending'?'📩':'🔔'}</div><div style="flex:1"><b>${esc(n.title)}</b><p class="muted" style="margin:5px 0;line-height:1.5">${esc(n.message)}</p><small class="muted">${new Date(n.createdAt).toLocaleString()}</small></div>${n.read?'':'<button class="small-btn" onclick="markNotification(\''+n._id+'\')">Mark read</button>'}</div>`).join('')||'<div class="empty">No notifications yet.</div>'}</div></section>`}
+async function markNotification(id){await api('/notifications/'+id+'/read',{method:'PATCH'});notifications()}
+async function markAllNotifications(){await api('/notifications/read-all',{method:'PATCH'});notifications();toast('Notifications marked as read')}
+
+async function teamfinder(){shell('Team Finder','Find collaborators for projects, hackathons and creative work.','teamfinder');$('headActions').innerHTML='<button class="btn primary" onclick="newTeam()">＋ Find Teammates</button>';$('content').innerHTML=`<div class="toolbar"><button class="btn secondary" onclick="loadTeams('')">All</button><button class="btn secondary" onclick="loadTeams('Academic')">Academic</button><button class="btn secondary" onclick="loadTeams('Hackathon')">Hackathon</button><button class="btn secondary" onclick="loadTeams('Creative')">Creative</button></div><div id="tlist" class="section-grid"></div>`;await loadTeams()}
+async function loadTeams(type=''){
+  let t=await api('/teams'+(type?'?type='+encodeURIComponent(type):''));
+  if(!t.length)t=demoTeams.filter(x=>!type||x.type===type);
+  $('tlist').innerHTML=t.map(x=>{const requested=isTeamRequested(x._id);return `<article class="card"><span class="tag">${esc(x.type)}</span><h3 style="margin:12px 0 6px">${esc(x.title)}</h3><p class="muted">Owner: ${esc(x.owner?.name||'Student')}</p><p style="line-height:1.5">${esc(x.description)}</p><b style="font-size:12px">Skills needed</b><div>${(x.skillsNeeded||[]).map(k=>`<span class="pill">${esc(k)}</span>`).join('')}</div><button class="btn primary ${requested?'joined':''}" style="margin-top:13px" ${requested?'disabled':''} onclick="requestTeam('${x._id}')">${requested?'Request Sent':'Request to Join'}</button></article>`}).join('')||'<div class="card empty">No team posts yet. Use <b>Find Teammates</b> above to create the first one.</div>';
+}
+function newTeam(){modal('Find Teammates',`<form id="tf"><div class="fg"><label>Project / team title</label><input id="tt" required placeholder="Smart India Hackathon Team"></div><div class="form-grid"><div class="fg"><label>Type</label><select id="ty"><option>Academic</option><option>Hackathon</option><option>Creative</option></select></div><div class="fg"><label>Skills needed</label><input id="ts" required placeholder="Python, UI/UX, Backend"></div></div><div class="fg"><label>Description</label><textarea id="td" rows="4" required></textarea></div><button class="btn primary">Create Team Post</button></form>`);$('tf').onsubmit=async e=>{e.preventDefault();try{await api('/teams',{method:'POST',body:JSON.stringify({title:$('tt').value,type:$('ty').value,skillsNeeded:$('ts').value.split(',').map(x=>x.trim()).filter(Boolean),description:$('td').value})});closeModal();teamfinder();toast('Team post created')}catch(x){toast(x.message)}}}
+async function requestTeam(id){
+  if(isTeamRequested(id)){toast('Request already sent');return}
+  try{await api('/teams/'+id+'/request',{method:'POST'});markTeamRequested(id);toast('Join request sent');loadTeams()}catch(e){
+    if(String(id).startsWith('demo-')){markTeamRequested(id);toast('Join request sent');loadTeams();return}
+    toast(e.message)
+  }
+}
+function profileCompletion(u){
+  const fields = [
+    u?.name,
+    u?.email,
+    u?.department,
+    u?.year,
+    Array.isArray(u?.skills) && u.skills.length > 0,
+    Array.isArray(u?.interests) && u.interests.length > 0
+  ];
+
+  const completed = fields.filter(Boolean).length;
+  return Math.round((completed / fields.length) * 100);
+}
+async function profile(){
+  shell('My Profile','Manage the profile connected to your Campus Connect account.','profile');
+  const u=await api('/me');
+  const pct=profileCompletion(u);
+  $('content').innerHTML=`<section class="card profile-card">
+    <div class="profile-big">${initials(u.name)}</div>
+    <div class="profile-info">
+      <span class="tag role-tag">${esc(String(u.role||'student').toUpperCase())}</span>
+      <h2>${esc(u.name)}</h2>
+      <p class="muted">${esc(u.email)}</p>
+      <p><b>Department:</b> ${esc(u.department||'Not added')} · <b>Year:</b> ${esc(u.year||'Not added')}</p>
+      <p><b>Skills:</b> ${(u.skills||[]).map(k=>`<span class="pill">${esc(k)}</span>`).join('')||'<span class="muted">Not added yet</span>'}</p>
+      <p><b>Interests:</b> ${(u.interests||[]).map(k=>`<span class="pill">${esc(k)}</span>`).join('')||'<span class="muted">Not added yet</span>'}</p>
+      <div class="progress-wrap"><div class="progress-label"><b>Profile completion</b><span>${pct}%</span></div><div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div></div>
+      <div class="actions" style="margin-top:15px"><button class="btn secondary" onclick="editProfile()">Edit Profile</button><button class="btn danger" onclick="logout()">Log Out</button></div>
+    </div>
+  </section>
+  <div class="quick-grid">
+    <div class="quick-card"><b>Events & Clubs</b><span>Register for events and build your campus communities.</span></div>
+    <div class="quick-card"><b>Student Connect</b><span>Show your skills and interests so classmates can find you.</span></div>
+    <div class="quick-card"><b>Team Finder</b><span>Find collaborators for projects, hackathons and creative work.</span></div>
+  </div>`;
+}
+
+function editProfile(){modal('Edit Profile',`<form id="pfm"><div class="fg"><label>Name</label><input id="pn" value="${esc(state.user?.name||'') }" required></div><div class="form-grid"><div class="fg"><label>Department</label><input id="pd" value="${esc(state.user?.department||'')}"></div><div class="fg"><label>Year</label><input id="py" value="${esc(state.user?.year||'')}"></div></div><div class="fg"><label>Skills</label><input id="ps" placeholder="Python, Java, UI/UX" value="${esc((state.user?.skills||[]).join(', '))}"></div><div class="fg"><label>Interests</label><input id="pi" placeholder="Hackathons, photography" value="${esc((state.user?.interests||[]).join(', '))}"></div><button class="btn primary">Save Changes</button></form>`);$('pfm').onsubmit=async e=>{e.preventDefault();try{const u=await api('/me',{method:'PUT',body:JSON.stringify({name:$('pn').value,department:$('pd').value,year:$('py').value,skills:$('ps').value.split(',').map(x=>x.trim()).filter(Boolean),interests:$('pi').value.split(',').map(x=>x.trim()).filter(Boolean)})});state.user={...state.user,...u};localStorage.setItem('cc_user',JSON.stringify(state.user));closeModal();profile();toast('Profile updated')}catch(x){toast(x.message)}}}
+
+async function admin(){
+  if(state.user?.role!=='super_admin'){shell('Admin Control Center','Platform management is restricted.','admin');$('content').innerHTML='<div class="card"><h3>Admin access required</h3></div>';return}
+  shell('Admin Control Center','Approve student events and clubs. Official workshops are managed separately.','admin');
+  $('headActions').innerHTML='<button class="btn secondary" onclick="admin()">↻ Refresh</button>';
+  const [s,p,c]=await Promise.all([api('/admin/stats'),api('/admin/events/pending'),api('/admin/clubs/pending')]);
+  $('content').innerHTML=`<section class="stats"><div class="stat"><div class="stat-icon blue">◫</div><div><div class="stat-num">${p.length}</div><div class="stat-label">Pending Events</div></div></div><div class="stat"><div class="stat-icon green">♟</div><div><div class="stat-num">${c.length}</div><div class="stat-label">Pending Clubs</div></div></div><div class="stat"><div class="stat-icon orange">♙</div><div><div class="stat-num">${s.users}</div><div class="stat-label">Registered Users</div></div></div><div class="stat"><div class="stat-icon purple">🛠️</div><div><div class="stat-num">${s.workshops}</div><div class="stat-label">Published Workshops</div></div></div></section><section class="panel" style="margin-bottom:20px"><div class="panel-head"><h2>Pending Event Approvals</h2><span class="tag">${p.length} pending</span></div><div class="panel-body">${p.length?p.map(x=>`<div class="event-row"><div class="event-main"><h3>${esc(x.title)}</h3><div class="event-meta">Submitted by ${esc(x.createdBy?.name||'Student')} · ${esc(x.category||'Event')} · ${esc(x.date||'')}</div><p>${esc(x.description)}</p></div><div class="actions"><button class="small-btn" onclick="moderate('${x._id}','approved')">Approve</button><button class="small-btn" style="color:#c62828" onclick="moderate('${x._id}','rejected')">Reject</button></div></div>`).join(''):'<div class="empty">No pending events. Student event submissions will appear here.</div>'}</div></section><section class="panel"><div class="panel-head"><h2>Pending Club Approvals</h2><span class="tag">${c.length} pending</span></div><div class="panel-body">${c.length?c.map(x=>`<div class="event-row"><div class="event-main"><h3>${esc(x.name)}</h3><div class="event-meta">${esc(x.category||'Club')} · Created by ${esc(x.createdBy?.name||'Student')}</div><p>${esc(x.description)}</p></div><div class="actions"><button class="small-btn" onclick="moderateClub('${x._id}','approved')">Approve</button><button class="small-btn" style="color:#c62828" onclick="moderateClub('${x._id}','rejected')">Reject</button></div></div>`).join(''):'<div class="empty">No pending clubs. Student club submissions will appear here.</div>'}</div></section>`;
+}
+function createWorkshop(){modal('Create Official Workshop',`<form id="wf"><div class="fg"><label>Workshop title</label><input id="wt" required placeholder="ESP32 & IoT Workshop"></div><div class="form-grid"><div class="fg"><label>Date</label><input id="wd" required placeholder="30 Sep 2026"></div><div class="fg"><label>Time</label><input id="wtime" required placeholder="2:00 PM"></div></div><div class="fg"><label>Venue</label><input id="wp" required placeholder="Innovation Lab"></div><div class="fg"><label>Description</label><textarea id="wdesc" rows="4" required placeholder="Workshop details"></textarea></div><button class="btn primary" style="width:100%">Publish Workshop</button></form>`);$('wf').onsubmit=async e=>{e.preventDefault();try{await api('/admin/workshops',{method:'POST',body:JSON.stringify({title:$('wt').value,date:$('wd').value,time:$('wtime').value,place:$('wp').value,description:$('wdesc').value})});closeModal();admin();toast('Workshop published — students have been notified')}catch(x){toast(x.message)}}}
+async function moderate(id,status){try{await api('/admin/events/'+id,{method:'PATCH',body:JSON.stringify({status})});toast(status==='approved'?'Event approved — student notified':'Event rejected — student notified');admin()}catch(e){toast(e.message)}}
+async function moderateClub(id,status){try{await api('/admin/clubs/'+id,{method:'PATCH',body:JSON.stringify({status})});toast(status==='approved'?'Club approved — student notified':'Club rejected — student notified');admin()}catch(e){toast(e.message)}}
+
+
+function globalSearch(e){if(e.key!=='Enter')return;const q=e.target.value.trim();if(!q)return;go('events');setTimeout(()=>{if($('eq')){$('eq').value=q;loadEvents()}},80)}
+function modal(title,body){const d=document.createElement('div');d.className='modal';d.id='modal';d.innerHTML=`<div class="modal-box"><div class="modal-head"><h2>${title}</h2><button class="icon-btn" onclick="closeModal()">×</button></div>${body}</div>`;document.body.appendChild(d)}
+function closeModal(){$('modal')?.remove()}
+function render(){if(!state.token){login();return}const p=location.hash.slice(1)||'dashboard';const pages={dashboard,events,clubs,workshops,community,students,notices,teamfinder,profile,admin,notifications};(pages[p]||dashboard)().catch(e=>{toast(e.message)})}
+window.addEventListener('hashchange',render);render();
+</script>
+</body>
+</html>
